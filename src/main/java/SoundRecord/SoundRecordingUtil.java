@@ -62,7 +62,6 @@ public class SoundRecordingUtil {
     void stop() throws IOException {
         isRunning = false;
         if (audioLine != null) {
-//            audioLine.drain();
             audioLine.stop();
             audioLine.close();
         }

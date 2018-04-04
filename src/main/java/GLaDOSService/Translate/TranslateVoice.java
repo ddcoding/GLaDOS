@@ -1,30 +1,26 @@
 package GLaDOSService.Translate;
 
-import GoogleRecognize.TranscriptVoice;
 import Player.Player;
 import SoundRecord.RecordService;
 import Translate.GoogleTranslate;
 
-public class TranslateVoice {
-    private TranscriptVoice transcriptVoice;
+import static GLaDOSService.GLaDOSService.repeatPhrase;
 
+public class TranslateVoice {
     private RecordService recordService;
 
     private Player player;
 
     public TranslateVoice() {
-        transcriptVoice = new TranscriptVoice();
         recordService = new RecordService();
         player = new Player();
     }
 
     public void translate() {
-        recordService.record(3000);
         try {
-            String fraza = transcriptVoice.getTranscription();
+            String fraza = recordService.record(3000);
             player.speak("Na jaki język mam tłumaczyć?");
-            recordService.record(3000);
-            String language = transcriptVoice.getTranscription().toLowerCase();
+            String language = recordService.record(3000).toLowerCase();
             player.speak("Przetłumaczony tekst " + language + "to");
             translateOnLangugage(fraza,language);
         } catch (Exception e) {
@@ -36,14 +32,22 @@ public class TranslateVoice {
     }
 
     private void translateOnLangugage(String fraza, String language) throws Exception, LanguageNotFoundException {
+        String lang = "";
         switch (language) {
             case "na angielski":
-                fraza = GoogleTranslate.translate("auto", "en-us", fraza);
-                player.speak(fraza, "en-us");
+                lang = "en-us";
+                fraza = GoogleTranslate.translate("auto", lang, fraza);
+                player.speak(fraza, lang);
+                break;
+            case "na niemiecki":
+                lang = "de";
+                fraza = GoogleTranslate.translate("auto",lang,fraza);
+                player.speak(fraza, lang);
                 break;
             default:
                 throw new LanguageNotFoundException();
         }
+        repeatPhrase(fraza,lang);
     }
 
 }
