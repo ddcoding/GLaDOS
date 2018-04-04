@@ -3,6 +3,11 @@ package GLaDOSService;
 import Player.Player;
 import SoundRecord.RecordService;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class GLaDOSService {
     private Player player;
     private RecordService recordService;
@@ -59,6 +64,12 @@ public class GLaDOSService {
             e.printStackTrace();
         }
 
+    }
+
+    public static List<String> splitPhrase(String phrase){
+        return  Arrays.stream(phrase.split(" "))
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
 
 }
