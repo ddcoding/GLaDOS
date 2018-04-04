@@ -1,6 +1,7 @@
 package SoundRecord;
 
 import Constans.FileConstants;
+import GoogleRecognize.TranscriptVoice;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.File;
@@ -9,14 +10,17 @@ import java.io.IOException;
 public class RecordService {
     private SoundRecordingUtil soundRecordingUtil ;
 
+    private TranscriptVoice transcriptVoice;
+
     private static final long RECORD_TIME = 3000;  // 1 minute
 
 
     public RecordService() {
         soundRecordingUtil = new SoundRecordingUtil();
+        transcriptVoice = new TranscriptVoice();
     }
 
-    public boolean record(long recordTime){
+    public String record(long recordTime) throws Exception {
         File wavFile = new File(FileConstants.URL_PATH);
         File flacFile = new File(FileConstants.URL_PATH_FLAC);
         final Thread recordThread = new Thread(new Runnable() {
@@ -42,9 +46,10 @@ public class RecordService {
             System.out.println("STOPPED");
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            throw new RecordException();
         }
-        return true;
+
+        return transcriptVoice.getTranscription();
     }
 
 
