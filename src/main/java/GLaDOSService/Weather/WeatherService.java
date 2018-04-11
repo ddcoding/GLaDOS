@@ -33,9 +33,9 @@ public class WeatherService {
 
     public void sayWeather() {
         try {
-            String miasto = recordService.record(3000);
+            String miasto = GLaDOSService.getTranscriptFromRecord(3000);
             player.speak("Chcesz usłyszeć na dzisiaj, na jutro czy na pojutrze pogodę w miejscowości" + miasto);
-            String forecast = recordService.record(3000).toLowerCase();
+            String forecast = GLaDOSService.getTranscriptFromRecord(3000).toLowerCase();
             player.speak("Pogoda " + forecast + " w miejscowości " + miasto + " to");
             getWeather(miasto, forecast);
         } catch (Exception e) {

@@ -20,13 +20,6 @@
             <artifactId>java-flac-encoder</artifactId>
             <version>0.3.7</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.media/jmf -->
-        <!--<dependency>-->
-            <!--<groupId>javax.media</groupId>-->
-            <!--<artifactId>jmf</artifactId>-->
-            <!--<version>2.1.1e</version>-->
-        <!--</dependency>-->
-        <!-- https://mvnrepository.com/artifact/com.googlecode.soundlibs/jlayer -->
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
             <artifactId>jlayer</artifactId>

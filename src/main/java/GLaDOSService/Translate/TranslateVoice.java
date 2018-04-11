@@ -1,8 +1,10 @@
 package GLaDOSService.Translate;
 
+import GLaDOSService.GLaDOSService;
 import Player.Player;
 import SoundRecord.RecordService;
 import Translate.GoogleTranslate;
+import jdk.nashorn.internal.objects.Global;
 
 import static GLaDOSService.GLaDOSService.repeatPhrase;
 
@@ -18,9 +20,9 @@ public class TranslateVoice {
 
     public void translate() {
         try {
-            String fraza = recordService.record(3000);
+            String fraza = GLaDOSService.getTranscriptFromRecord(3000);
             player.speak("Na jaki język mam tłumaczyć?");
-            String language = recordService.record(3000).toLowerCase();
+            String language = GLaDOSService.getTranscriptFromRecord(3000).toLowerCase();
             player.speak("Przetłumaczony tekst " + language + "to");
             translateOnLangugage(fraza,language);
         } catch (Exception e) {

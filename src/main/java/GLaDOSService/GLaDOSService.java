@@ -1,5 +1,6 @@
 package GLaDOSService;
 
+import GoogleRecognize.TranscriptVoice;
 import Player.Player;
 import SoundRecord.RecordService;
 
@@ -10,11 +11,11 @@ import java.util.stream.Collectors;
 
 public class GLaDOSService {
     private Player player;
-    private RecordService recordService;
+    private static RecordService recordService = new RecordService();
+    private static TranscriptVoice transcriptVoice = new TranscriptVoice();
     private HandleCommands handleCommands;
     public GLaDOSService() {
         player = new Player();
-        recordService = new RecordService();
         handleCommands = new HandleCommands();
     }
 
@@ -22,10 +23,10 @@ public class GLaDOSService {
         Player player = new Player();
         String s = null;
         while (true) {
-                if (recordService.record(2000).equals("GLaDOS")) {
+                if (getTranscriptFromRecord(2000).equals("GLaDOS")) {
                     player.speak("Witam jestem GLaDOS, w czym mogę służyć?");
                         try {
-                            s = recordService.record(3000);
+                            s = getTranscriptFromRecord(3000);
                             handleCommands.handleCommand(s);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -39,7 +40,7 @@ public class GLaDOSService {
         RecordService recordService = new RecordService();
         player.speak("Czy powtórzyć ?");
         try {
-            if(recordService.record(3000).toLowerCase().equals("tak")) {
+            if(getTranscriptFromRecord(3000).toLowerCase().equals("tak")) {
                 player.speak(phrase);
                 repeatPhrase(phrase);
             }
@@ -55,7 +56,7 @@ public class GLaDOSService {
         RecordService recordService = new RecordService();
         player.speak("Czy powtórzyć ?");
         try {
-            if(recordService.record(3000).toLowerCase().equals("tak")) {
+            if(getTranscriptFromRecord(3000).toLowerCase().equals("tak")) {
                 player.speak(phrase, language);
                 repeatPhrase(phrase, language);
             }
@@ -71,5 +72,16 @@ public class GLaDOSService {
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
     }
+
+    public static String getTranscriptFromRecord(int time){
+        try {
+            recordService.record(time);
+            return transcriptVoice.getTranscription();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Wystąpił błąd.";
+    }
+
 
 }

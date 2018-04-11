@@ -30,6 +30,8 @@ public class HandleCommands {
             case "pogoda": player.speak("Z jakiego miasta chcesz usłyszeć pogodę?");
                 weatherService.sayWeather();
                 break;
+            case "kim jest kuba": player.speak("Kuba jest dla mnie śmieciem. Jestem najlepsza. Żaden człowiek mi nie podskoczy. Kuba to zwykły programista java , a ja jestem wielki GLADOS hehe.");
+            break;
             default: player.speak("Nie znam tej komendy.");
             break;
         }

@@ -20,7 +20,7 @@ public class RecordService {
         transcriptVoice = new TranscriptVoice();
     }
 
-    public String record(long recordTime) throws Exception {
+    public void record(long recordTime) throws Exception {
         File wavFile = new File(FileConstants.URL_PATH);
         File flacFile = new File(FileConstants.URL_PATH_FLAC);
         final Thread recordThread = new Thread(new Runnable() {
@@ -48,8 +48,6 @@ public class RecordService {
             e.printStackTrace();
             throw new RecordException();
         }
-
-        return transcriptVoice.getTranscription();
     }
 
 
