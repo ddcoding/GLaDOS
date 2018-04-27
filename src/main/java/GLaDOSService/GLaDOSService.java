@@ -89,8 +89,7 @@ public class GLaDOSService {
     }
 
     private boolean isCalled(String modelName){
-        SnowboyDetect detector = new SnowboyDetect("common.res",
-                modelName);
+        SnowboyDetect detector = new SnowboyDetect("common.res", modelName);
 
         AudioFormat format = new AudioFormat(16000, 16, 1, true, false);
         DataLine.Info targetInfo = new DataLine.Info(TargetDataLine.class, format);
