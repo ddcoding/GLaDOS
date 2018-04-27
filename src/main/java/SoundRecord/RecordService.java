@@ -12,7 +12,7 @@ public class RecordService {
 
     private TranscriptVoice transcriptVoice;
 
-    private static final long RECORD_TIME = 3000;  // 1 minute
+    private static final long RECORD_TIME = 3000;
 
 
     public RecordService() {
@@ -51,5 +51,32 @@ public class RecordService {
     }
 
 
+    public byte[] recordToBytes(long recordTime) throws RecordException {
+        final Thread recordThread = new Thread(new Runnable() {
+            public void run() {
+                System.out.println("Start recording ...");
+                try {
+                    soundRecordingUtil.start();
+                } catch (LineUnavailableException e) {
+                    e.printStackTrace();
+                }
 
+            }
+        });
+        recordThread.start();
+        try {
+            Thread.sleep(recordTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            soundRecordingUtil.stop();
+            System.out.println("STOPPED");
+            return soundRecordingUtil.save();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RecordException();
+        }
+    }
 }

@@ -31,7 +31,7 @@ public class SoundRecordingUtil {
                 bigEndian);
     }
 
-    void start() throws LineUnavailableException {
+    public void start() throws LineUnavailableException {
         format = getAudioFormat();
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
 
@@ -58,7 +58,7 @@ public class SoundRecordingUtil {
         }
     }
 
-    void stop() throws IOException {
+    public void stop() throws IOException {
         isRunning = false;
         if (audioLine != null) {
             audioLine.stop();
@@ -66,7 +66,7 @@ public class SoundRecordingUtil {
         }
     }
 
-    void save(File wavFile,File flacFile) throws IOException {
+    public void save(File wavFile,File flacFile) throws IOException {
         byte[] audioData = recordBytes.toByteArray();
         ByteArrayInputStream bais = new ByteArrayInputStream(audioData);
         AudioInputStream audioInputStream = new AudioInputStream(bais, format,
@@ -78,5 +78,9 @@ public class SoundRecordingUtil {
         recordBytes.close();
 //        FLAC_FileEncoder flac_fileEncoder = new FLAC_FileEncoder();
 //        flac_fileEncoder.encode(wavFile, flacFile);
+    }
+
+    public byte[] save(){
+        return recordBytes.toByteArray();
     }
 }

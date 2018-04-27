@@ -78,7 +78,7 @@ public class WeatherUriBuilder {
         if (getCity() == null
                 || getMode() == null
                 || (getMode() == ForecastMode.FUTURE && getAmountFutureDays() == null))
-            throw new CannotBuildException("Cannot buid URI, because you didnt set all required values!");
+            throw new CannotBuildException("Cannot build URI, because you didnt set all required values!");
 
         return WeatherUriBuilder.BASE_URL_WEATHER +
                 (getMode() == ForecastMode.CURRENTLY ? "/weather?q=" : "/forecast?q=") +

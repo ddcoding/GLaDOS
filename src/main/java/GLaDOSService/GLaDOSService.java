@@ -1,10 +1,15 @@
 package GLaDOSService;
 
+import Constans.ModelConstants;
 import GoogleRecognize.TranscriptVoice;
 import Player.Player;
 import SoundRecord.RecordService;
+import ai.kitt.snowboy.SnowboyDetect;
 
+import javax.sound.sampled.*;
 import java.lang.reflect.Array;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +28,8 @@ public class GLaDOSService {
         Player player = new Player();
         String s = null;
         while (true) {
-                if (getTranscriptFromRecord(2000).equals("GLaDOS")) {
-                    player.speak("Witam jestem GLaDOS, w czym mogę służyć?");
+                if (isCalled(ModelConstants.AVA)) {
+                    player.speak("Witam jestem Ejwa, w czym mogę służyć?");
                         try {
                             s = getTranscriptFromRecord(3000);
                             handleCommands.handleCommand(s);
@@ -83,5 +88,50 @@ public class GLaDOSService {
         return "Wystąpił błąd.";
     }
 
+    private boolean isCalled(String modelName){
+        SnowboyDetect detector = new SnowboyDetect("common.res",
+                modelName);
+
+        AudioFormat format = new AudioFormat(16000, 16, 1, true, false);
+        DataLine.Info targetInfo = new DataLine.Info(TargetDataLine.class, format);
+
+        TargetDataLine targetLine =
+                null;
+        try {
+            targetLine = (TargetDataLine) AudioSystem.getLine(targetInfo);
+        targetLine.open(format);
+        targetLine.start();
+
+        // Reads 0.1 second of audio in each call.
+        byte[] targetData = new byte[3200];
+        short[] snowboyData = new short[1600];
+        int numBytesRead;
+
+        while (true) {
+            // Reads the audio data in the blocking mode. If you are on a very slow
+            // machine such that the hotword detector could not process the audio
+            // data in real time, this will cause problem...
+            numBytesRead = targetLine.read(targetData, 0, targetData.length);
+
+            if (numBytesRead == -1) {
+                System.out.print("Fails to read audio data.");
+                break;
+            }
+
+            // Converts bytes into int16 that Snowboy will read.
+            ByteBuffer.wrap(targetData).order(
+                    ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(snowboyData);
+
+            // Detection.
+            int result = detector.RunDetection(snowboyData, snowboyData.length);
+            if (result > 0) {
+                return true;
+            }
+        }
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }
