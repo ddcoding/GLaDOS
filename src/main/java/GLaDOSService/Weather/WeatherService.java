@@ -11,6 +11,7 @@ import Weather.Builder.CannotBuildException;
 import Weather.ForecastMode;
 import Weather.Service.CannotGetWeatherException;
 import Weather.Service.WeatherResponseService;
+import Weather.WeatherIt;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -78,10 +79,8 @@ public class WeatherService {
                     throw new CommandNotFoundException();
             }
             weatherResponseService.setURI(uri);
-            JSONObject jsonObject = weatherResponseService.getWeather();
-            Double degrees = ((JSONObject) jsonObject.get("main")).getDouble("temp");
-            String status = additionalInformation((JSONArray) jsonObject.get("weather"));
-            String result = String.format("%.2f", degrees - 273.15) + "stopni oraz " + status + ". Życzę miłego dnia.";
+            WeatherIt weather = weatherResponseService.getWeather();
+            String result = weather.getTemperature() + "stopni oraz " + weather.getAdditionalInformation() + ". Życzę miłego dnia.";
             Player.getInstance().speak(result);
             if(repeat)
             GLaDOSService.repeatPhrase(result);
@@ -90,17 +89,4 @@ public class WeatherService {
         }
     }
 
-    private String additionalInformation(JSONArray weather) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder("");
-        Iterator<Object> it = weather.iterator();
-        JSONObject jsonObject = (JSONObject) it.next();
-        stringBuilder.append(GoogleTranslate.translate("en", "pl", jsonObject.getString("description")));
-        while (it.hasNext()) {
-            jsonObject = (JSONObject) it.next();
-            stringBuilder
-                    .append(" oraz ")
-                    .append(GoogleTranslate.translate("en", "pl", jsonObject.getString("description")));
-        }
-        return stringBuilder.toString();
-    }
 }

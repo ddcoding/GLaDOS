@@ -4,6 +4,7 @@ import Request.CannotGetResponseException;
 import Request.RequestService;
 import Weather.Builder.WeatherUriBuilder;
 import Weather.ForecastMode;
+import Weather.Weather;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -44,7 +45,7 @@ public class WeatherResponseService {
 
 
 
-    public JSONObject getWeather() throws IOException, CannotGetWeatherException, ParseException {
+    public Weather getWeather() throws IOException, CannotGetWeatherException, ParseException {
         JSONObject result = null;
         try {
             result = requestService.getJSONfromURL(getURI());
@@ -52,7 +53,7 @@ public class WeatherResponseService {
             throw new CannotGetWeatherException();
         }
         if(getWeatherUriBuilder().getMode() == ForecastMode.FUTURE) result = getFutureWeatherObject(result);
-        return result;
+        return new Weather(result);
     }
 
     private JSONObject getFutureWeatherObject(JSONObject jsonObject) throws ParseException {
