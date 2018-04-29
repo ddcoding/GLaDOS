@@ -89,15 +89,17 @@ public class GLaDOSService {
     }
 
     private boolean isCalled(String modelName){
-        SnowboyDetect detector = new SnowboyDetect("common.res", modelName);
-
         AudioFormat format = new AudioFormat(16000, 16, 1, true, false);
         DataLine.Info targetInfo = new DataLine.Info(TargetDataLine.class, format);
+        SnowboyDetect detector = new SnowboyDetect("common.res", modelName);
 
-        TargetDataLine targetLine =
-                null;
+        detector.SetSensitivity("0.4");
+        detector.SetAudioGain(1);
+        detector.ApplyFrontend(false);
+
+
         try {
-            targetLine = (TargetDataLine) AudioSystem.getLine(targetInfo);
+            TargetDataLine targetLine = (TargetDataLine) AudioSystem.getLine(targetInfo);
         targetLine.open(format);
         targetLine.start();
 

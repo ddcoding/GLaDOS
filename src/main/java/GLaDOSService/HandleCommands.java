@@ -1,5 +1,6 @@
 package GLaDOSService;
 
+import GLaDOSService.DateTime.DateTimeService;
 import GLaDOSService.Translate.TranslateVoice;
 import GLaDOSService.Weather.WeatherService;
 import Player.Player;
@@ -12,10 +13,13 @@ public class HandleCommands {
 
     private WeatherService weatherService;
 
+    private DateTimeService dateTimeService;
+
     public HandleCommands() {
         player = new Player();
         translateVoice = new TranslateVoice();
         weatherService = new WeatherService();
+        dateTimeService = new DateTimeService();
     }
 
     void handleCommand(String command){
@@ -27,11 +31,17 @@ public class HandleCommands {
             case"tłumacz": player.speak("Jaką frazę mam dla Ciebie przetłumaczyć?");
             translateVoice.translate();
                 break;
-            case "pogoda": player.speak("Z jakiego miasta chcesz usłyszeć pogodę?");
+            case "podaj pogodę": player.speak("Z jakiego miasta chcesz usłyszeć pogodę?");
                 weatherService.sayWeather();
                 break;
             case "kim jest kuba": player.speak("Kuba jest dla mnie śmieciem. Jestem najlepsza. Żaden człowiek mi nie podskoczy. Kuba to zwykły programista java , a ja jestem wielki GLADOS hehe.");
             break;
+            case "podaj godzinę":
+                dateTimeService.checkTime();
+            break;
+            case "podaj datę":
+                dateTimeService.checkDate();
+                break;
             default: player.speak("Nie znam tej komendy.");
             break;
         }
