@@ -54,6 +54,10 @@ public class HandleCommands {
             case "dobranoc":
                 welcomeService.speakGoodbyeMessage();
                 break;
+            case "zakończ":
+                Player.getInstance().speak("Papa");
+                System.exit(0);
+                break;
             default: Player.getInstance().speak("Nie znam tej komendy.");
             break;
         }
