@@ -32,7 +32,7 @@ public class WelcomeService {
             Player.getInstance().speak("Wystapil blad w trakcie pobierania aktualnej lokalizacji. Przepraszam, jest mi przykro");
         }
     }
-
+    //TODO Po zrobieniu budzikow dodac by sie pytal czy ustawic budzik na nastepny dzien.
     public void speakGoodbyeMessage(){
         Player.getInstance().speak("Dobranoc. Życzę kolorowych snów. Mam nadzieję, że jutrzejsza pogoda sprawi, że Twój sen będzie udany. Pogoda w twojej miejscowości na jutro to");
         try {
