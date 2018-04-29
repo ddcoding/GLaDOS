@@ -1,4 +1,4 @@
-package GLaDOSService.DateTime;
+package DateTime;
 
 import GLaDOSService.GLaDOSService;
 import Player.Player;
@@ -14,15 +14,12 @@ public class DateTimeService {
         calendar = Calendar.getInstance();
     }
 
-    public void checkDateTime(DateTimeType dateTimeType, boolean repeat){
+    public String getDateTime(DateTimeType dateTimeType){
         SimpleDateFormat simpleDateFormat = null;
         if(dateTimeType == DateTimeType.TIME)
         simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         else if(dateTimeType == DateTimeType.DATE)
             simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String czas = simpleDateFormat.format(calendar.getTime());
-        Player.getInstance().speak(czas);
-        if(repeat)
-        GLaDOSService.repeatPhrase(czas);
+         return simpleDateFormat.format(calendar.getTime());
     }
 }

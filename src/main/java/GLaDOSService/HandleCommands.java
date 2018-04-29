@@ -1,7 +1,7 @@
 package GLaDOSService;
 
-import GLaDOSService.DateTime.DateTimeService;
-import GLaDOSService.DateTime.DateTimeType;
+import DateTime.DateTimeService;
+import DateTime.DateTimeType;
 import GLaDOSService.Translate.TranslateVoice;
 import GLaDOSService.Weather.WeatherService;
 import GLaDOSService.Welcome.WelcomeService;
@@ -39,10 +39,14 @@ public class HandleCommands {
             case "kim jest kuba": Player.getInstance().speak("Kuba jest dla mnie śmieciem. Jestem najlepsza. Żaden człowiek mi nie podskoczy. Kuba to zwykły programista java , a ja jestem wielki GLADOS hehe.");
             break;
             case "podaj godzinę":
-                dateTimeService.checkDateTime(DateTimeType.TIME,true);
+                String czas = dateTimeService.getDateTime(DateTimeType.TIME);
+                Player.getInstance().speak(czas);
+                    GLaDOSService.repeatPhrase(czas);
             break;
             case "podaj datę":
-                dateTimeService.checkDateTime(DateTimeType.DATE,true);
+                String data = dateTimeService.getDateTime(DateTimeType.DATE);
+                Player.getInstance().speak(data);
+                GLaDOSService.repeatPhrase(data);
                 break;
             case "dzień dobry":
                 welcomeService.speakWelcomeMessage();

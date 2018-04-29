@@ -1,15 +1,14 @@
 package GLaDOSService.Welcome;
 
 import GLaDOSService.CommandNotFoundException;
-import GLaDOSService.DateTime.DateTimeService;
-import GLaDOSService.DateTime.DateTimeType;
+import DateTime.DateTimeService;
+import DateTime.DateTimeType;
 import GLaDOSService.GLaDOSService;
 import GLaDOSService.Weather.WeatherService;
 import GeoIP.CannotGetLocalizationException;
 import GeoIP.GeoIPInt;
 import GeoIP.GeoIPService;
 import Player.Player;
-import org.joda.time.DateTime;
 
 public class WelcomeService {
     private DateTimeService dateTimeService;
@@ -22,11 +21,7 @@ public class WelcomeService {
     }
 
     public void speakWelcomeMessage(){
-        Player.getInstance().speak("Hej ! Mamy dzisiaj");
-        dateTimeService.checkDateTime(DateTimeType.DATE,false);
-        Player.getInstance().speak("jest godzina");
-                dateTimeService.checkDateTime(DateTimeType.TIME,false);
-                Player.getInstance().speak("Pogoda na dzisiaj to");
+        Player.getInstance().speak("Hej, dzisiaj mamy " + dateTimeService.getDateTime(DateTimeType.DATE) + " jest godzina " + dateTimeService.getDateTime(DateTimeType.TIME) + " pogoda w twojej miejscowości na dzisiaj to");
         try {
             weatherService.getWeather(geoIPService.getMyCityName(),"na dzisiaj",false);
             Player.getInstance().speak("Czy powtórzyć ?");
@@ -39,7 +34,7 @@ public class WelcomeService {
     }
 
     public void speakGoodbyeMessage(){
-        Player.getInstance().speak("Dobranoc. Życzę kolorowych snów. Mam nadzieję, że jutrzejsza pogoda sprawi, że Twój sen będzie udany. Pogoda na jutro to");
+        Player.getInstance().speak("Dobranoc. Życzę kolorowych snów. Mam nadzieję, że jutrzejsza pogoda sprawi, że Twój sen będzie udany. Pogoda w twojej miejscowości na jutro to");
         try {
             weatherService.getWeather(geoIPService.getMyCityName(),"na jutro",false);
         } catch (CommandNotFoundException | CannotGetLocalizationException e) {

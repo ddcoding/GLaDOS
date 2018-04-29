@@ -2,26 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="552fb38e-d150-4bb0-8858-fc8ca2d161fa" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/Welcome/WelcomeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GeoIP/CannotGetLocalizationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GeoIP/GeoIPInt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GeoIP/GeoIPService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Request/CannotGetResponseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Request/RequestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RecordedAudio.wav" beforeDir="false" afterPath="$PROJECT_DIR$/RecordedAudio.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/libsnowboy-detect-java.so" beforeDir="false" afterPath="$PROJECT_DIR$/lib/libsnowboy-detect-java.so" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Constans/FileConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Constans/FileConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/GLaDOSService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/GLaDOSService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DateTime/DateTimeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DateTime/DateTimeType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/HandleCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/HandleCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/Translate/TranslateVoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/Translate/TranslateVoice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/Weather/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/Weather/WeatherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Weather/Service/WeatherRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Weather/Service/WeatherResponseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GLaDOSService/Welcome/WelcomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GLaDOSService/Welcome/WelcomeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Constans/FileConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Constans/FileConstants.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GLaDOSService/GLaDOSService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GLaDOSService/GLaDOSService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GLaDOSService/HandleCommands.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GLaDOSService/HandleCommands.class" afterDir="false" />
@@ -63,8 +51,8 @@
       <file leaf-file-name="WelcomeService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/Welcome/WelcomeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="43" column="85" lean-forward="true" selection-start-line="43" selection-start-column="85" selection-end-line="43" selection-end-column="85" />
+            <state relative-caret-position="84">
+              <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,17 +63,17 @@
       <file leaf-file-name="HandleCommands.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/HandleCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+            <state relative-caret-position="279">
+              <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="DateTimeService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DateTime/DateTimeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state relative-caret-position="204">
+              <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#277#278#0" expanded="true" />
@@ -158,8 +146,9 @@
         <option value="$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/Type.java" />
         <option value="$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/GLaDOSService/Weather/WeatherService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GLaDOSService/HandleCommands.java" />
         <option value="$PROJECT_DIR$/src/main/java/GLaDOSService/GLaDOSService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GLaDOSService/HandleCommands.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DateTime/DateTimeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/GLaDOSService/Welcome/WelcomeService.java" />
       </list>
     </option>
@@ -224,15 +213,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="GLaDOSService" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GLaDOS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GLaDOS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="GLaDOSService" type="462c0819:PsiDirectoryNode" />
-              <item name="DateTime" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GLaDOS" type="b2602c69:ProjectViewProjectNode" />
@@ -370,7 +350,7 @@
       <workItem from="1523436793201" duration="488000" />
       <workItem from="1524854407415" duration="1027000" />
       <workItem from="1524895366230" duration="8189000" />
-      <workItem from="1525019642551" duration="6275000" />
+      <workItem from="1525019642551" duration="7265000" />
     </task>
     <task id="LOCAL-00001" summary="Dodana obsluga dat i godzin">
       <created>1525012308093</created>
@@ -379,11 +359,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525012308094</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Dodane dzień dobry i dobranoc&#10;Pobieranie lokalizacji po ip&#10;Refactor kodu">
+      <created>1525026058756</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1525026058757</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24237000" />
+    <option name="totallyTimeSpent" value="25227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="987" extended-state="6" />
@@ -399,11 +386,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3295063" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4477612" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4477612" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3295063" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21832883" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21832883" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -437,7 +424,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Dodana obsluga dat i godzin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodana obsluga dat i godzin" />
+    <MESSAGE value="Dodane dzień dobry i dobranoc&#10;Pobieranie lokalizacji po ip&#10;Refactor kodu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodane dzień dobry i dobranoc&#10;Pobieranie lokalizacji po ip&#10;Refactor kodu" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -758,22 +746,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/DateTime/DateTimeType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/DateTime/DateTimeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#326#327#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -787,13 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/HandleCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/GLaDOSService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -804,10 +773,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/HandleCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="48" column="47" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DateTime/DateTimeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#277#278#0" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GLaDOSService/Welcome/WelcomeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="43" column="85" lean-forward="true" selection-start-line="43" selection-start-column="85" selection-end-line="43" selection-end-column="85" />
+        <state relative-caret-position="84">
+          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
