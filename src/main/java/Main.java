@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.TargetDataLine;
+import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -17,7 +18,10 @@ public class Main {
 
     private static GLaDOSService gLaDOSService = new GLaDOSService();
 
+    private static final String OS = System.getProperty("os.name");
+
     static {
+        if(!OS.toLowerCase().equals("windows"))
         System.load(FileConstants.SNOWBOY_JNI_PATH);
     }
 

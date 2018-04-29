@@ -7,6 +7,14 @@ import java.io.IOException;
 
 public class Player {
     private SynthesiserV2 synthesiserV2;
+
+    private static Player ourInstance = new Player();
+
+    public static Player getInstance() {
+        return ourInstance;
+    }
+
+
     public Player() {
         synthesiserV2 = new SynthesiserV2("AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw");
         synthesiserV2.setSpeed(0.7);

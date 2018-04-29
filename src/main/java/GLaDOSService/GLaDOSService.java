@@ -5,7 +5,6 @@ import GoogleRecognize.TranscriptVoice;
 import Player.Player;
 import SoundRecord.RecordService;
 import ai.kitt.snowboy.SnowboyDetect;
-
 import javax.sound.sampled.*;
 import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
@@ -15,24 +14,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GLaDOSService {
-    private Player player;
     private static RecordService recordService = new RecordService();
     private static TranscriptVoice transcriptVoice = new TranscriptVoice();
     private HandleCommands handleCommands;
+    private static final String OS = System.getProperty("os.name");
     public GLaDOSService() {
-        player = new Player();
         handleCommands = new HandleCommands();
     }
 
     public void startService() throws Exception {
-        Player player = new Player();
-        String s = null;
+        if(!OS.toLowerCase().equals("windows"))
+            Player.getInstance().speak("Hej, jestem Ejwa.");
+        else Player.getInstance().speak("Hej, jestem GLaDOS");
+
+        boolean isCalled = false;
         while (true) {
-                if (isCalled(ModelConstants.AVA)) {
-                    player.speak("Witam jestem Ejwa, w czym mogę służyć?");
+                if(!OS.toLowerCase().equals("windows")) {
+                    isCalled = isCalled(ModelConstants.AVA);
+                }
+                else isCalled = getTranscriptFromRecord(2000).equals("GLaDOS");
+                if (isCalled) {
+                    Player.getInstance().speak("Witaj");
                         try {
-                            s = getTranscriptFromRecord(3000);
-                            handleCommands.handleCommand(s);
+                            handleCommands.handleCommand(getTranscriptFromRecord(3000));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -41,12 +45,11 @@ public class GLaDOSService {
     }
 
     public static void repeatPhrase(String phrase){
-        Player player = new Player();
         RecordService recordService = new RecordService();
-        player.speak("Czy powtórzyć ?");
+        Player.getInstance().speak("Czy powtórzyć ?");
         try {
-            if(getTranscriptFromRecord(3000).toLowerCase().equals("tak")) {
-                player.speak(phrase);
+            if(getTranscriptFromRecord(2000).toLowerCase().equals("tak")) {
+                Player.getInstance().speak(phrase);
                 repeatPhrase(phrase);
             }
 
@@ -57,12 +60,11 @@ public class GLaDOSService {
     }
 
     public static void repeatPhrase(String phrase, String language){
-        Player player = new Player();
         RecordService recordService = new RecordService();
-        player.speak("Czy powtórzyć ?");
+        Player.getInstance().speak("Czy powtórzyć ?");
         try {
-            if(getTranscriptFromRecord(3000).toLowerCase().equals("tak")) {
-                player.speak(phrase, language);
+            if(getTranscriptFromRecord(2000).toLowerCase().equals("tak")) {
+                Player.getInstance().speak(phrase, language);
                 repeatPhrase(phrase, language);
             }
 
@@ -85,7 +87,7 @@ public class GLaDOSService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Wystąpił błąd.";
+        return "Wystąpił błąd przy pobieraniu transkrypcji.";
     }
 
     private boolean isCalled(String modelName){

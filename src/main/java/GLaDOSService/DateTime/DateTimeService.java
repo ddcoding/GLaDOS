@@ -8,26 +8,21 @@ import java.util.Calendar;
 
 public class DateTimeService {
 
-    private Player player;
-
     private Calendar calendar;
 
     public DateTimeService() {
-        player = new Player();
         calendar = Calendar.getInstance();
     }
 
-    public void checkTime(){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+    public void checkDateTime(DateTimeType dateTimeType, boolean repeat){
+        SimpleDateFormat simpleDateFormat = null;
+        if(dateTimeType == DateTimeType.TIME)
+        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        else if(dateTimeType == DateTimeType.DATE)
+            simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String czas = simpleDateFormat.format(calendar.getTime());
-        player.speak(czas);
+        Player.getInstance().speak(czas);
+        if(repeat)
         GLaDOSService.repeatPhrase(czas);
-    }
-
-    public void checkDate(){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String data = simpleDateFormat.format(calendar.getTime());
-        player.speak(data);
-        GLaDOSService.repeatPhrase(data);
     }
 }

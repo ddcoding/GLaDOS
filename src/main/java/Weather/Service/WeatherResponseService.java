@@ -1,5 +1,7 @@
 package Weather.Service;
 
+import Request.CannotGetResponseException;
+import Request.RequestService;
 import Weather.Builder.WeatherUriBuilder;
 import Weather.ForecastMode;
 import org.json.JSONArray;
@@ -15,16 +17,17 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Calendar;
 
-public class WeatherRequestService {
+public class WeatherResponseService {
 
     private String URI;
 
     private WeatherUriBuilder weatherUriBuilder;
 
-    private final static String USER_AGENT = "Mozilla/5.0";
+    private RequestService requestService;
 
-    public WeatherRequestService() {
+    public WeatherResponseService() {
         weatherUriBuilder = new WeatherUriBuilder();
+        requestService = new RequestService();
     }
 
     public WeatherUriBuilder getWeatherUriBuilder() {
@@ -39,30 +42,15 @@ public class WeatherRequestService {
         this.URI = URI;
     }
 
+
+
     public JSONObject getWeather() throws IOException, CannotGetWeatherException, ParseException {
-        URL obj = new URL("http://" + getURI());
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-        // optional default is GET
-        con.setRequestMethod("GET");
-
-        //add request header
-        con.setRequestProperty("User-Agent", WeatherRequestService.USER_AGENT);
-
-        int responseCode = con.getResponseCode();
-        if (responseCode >= 300) throw new CannotGetWeatherException();
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+        JSONObject result = null;
+        try {
+            result = requestService.getJSONfromURL(getURI());
+        } catch (CannotGetResponseException e) {
+            throw new CannotGetWeatherException();
         }
-        in.close();
-
-        //print result
-        JSONObject result = new JSONObject(response.toString());
         if(getWeatherUriBuilder().getMode() == ForecastMode.FUTURE) result = getFutureWeatherObject(result);
         return result;
     }

@@ -9,24 +9,21 @@ import jdk.nashorn.internal.objects.Global;
 import static GLaDOSService.GLaDOSService.repeatPhrase;
 
 public class TranslateVoice {
-    private RecordService recordService;
 
-    private Player player;
 
     public TranslateVoice() {
-        recordService = new RecordService();
-        player = new Player();
     }
 
     public void translate() {
         try {
+            Player.getInstance().speak("Jaką frazę mam dla Ciebie przetłumaczyć?");
             String fraza = GLaDOSService.getTranscriptFromRecord(3000);
-            player.speak("Na jaki język mam tłumaczyć?");
+            Player.getInstance().speak("Na jaki język mam tłumaczyć?");
             String language = GLaDOSService.getTranscriptFromRecord(3000).toLowerCase();
-            player.speak("Przetłumaczony tekst " + language + "to");
+            Player.getInstance().speak("Przetłumaczony tekst " + language + "to");
             translateOnLangugage(fraza,language);
         } catch (Exception e) {
-            player.speak("Nie znaleziono danego języka");
+            Player.getInstance().speak("Nie znaleziono danego języka");
             e.printStackTrace();
         }
 
@@ -39,12 +36,12 @@ public class TranslateVoice {
             case "na angielski":
                 lang = "en-us";
                 fraza = GoogleTranslate.translate("auto", lang, fraza);
-                player.speak(fraza, lang);
+                Player.getInstance().speak(fraza, lang);
                 break;
             case "na niemiecki":
                 lang = "de";
                 fraza = GoogleTranslate.translate("auto",lang,fraza);
-                player.speak(fraza, lang);
+                Player.getInstance().speak(fraza, lang);
                 break;
             default:
                 throw new LanguageNotFoundException();

@@ -2,13 +2,15 @@ package GLaDOSService.Weather;
 
 import GLaDOSService.CommandNotFoundException;
 import GLaDOSService.GLaDOSService;
+import GeoIP.GeoIPInt;
+import GeoIP.GeoIPService;
 import Player.Player;
 import SoundRecord.RecordService;
 import Translate.GoogleTranslate;
 import Weather.Builder.CannotBuildException;
 import Weather.ForecastMode;
 import Weather.Service.CannotGetWeatherException;
-import Weather.Service.WeatherRequestService;
+import Weather.Service.WeatherResponseService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,55 +20,55 @@ import java.util.Iterator;
 
 public class WeatherService {
 
-    private RecordService recordService;
 
-    private Player player;
+    private WeatherResponseService weatherResponseService;
 
-    private WeatherRequestService weatherRequestService;
+    private GeoIPInt geoIPService;
 
 
     public WeatherService() {
-        recordService = new RecordService();
-        player = new Player();
-        weatherRequestService = new WeatherRequestService();
+        weatherResponseService = new WeatherResponseService();
+        geoIPService = new GeoIPService();
     }
 
     public void sayWeather() {
         try {
+            Player.getInstance().speak("Z jakiego miasta chcesz usłyszeć pogodę?");
             String miasto = GLaDOSService.getTranscriptFromRecord(3000);
-            player.speak("Chcesz usłyszeć na dzisiaj, na jutro czy na pojutrze pogodę w miejscowości" + miasto);
+            if(miasto.toLowerCase().equals("z obecnego")) miasto = geoIPService.getMyCityName();
+            Player.getInstance().speak("Chcesz usłyszeć na dzisiaj, na jutro czy na pojutrze pogodę w miejscowości" + miasto);
             String forecast = GLaDOSService.getTranscriptFromRecord(3000).toLowerCase();
-            player.speak("Pogoda " + forecast + " w miejscowości " + miasto + " to");
-            getWeather(miasto, forecast);
+            Player.getInstance().speak("Pogoda " + forecast + " w miejscowości " + miasto + " to");
+            getWeather(miasto, forecast, true);
         } catch (Exception e) {
-            player.speak("Wystąpił błąd w trakcie sprawdzania pogody !");
+            Player.getInstance().speak("Wystąpił błąd w trakcie sprawdzania pogody !");
             e.printStackTrace();
         }
 
     }
 
-    private void getWeather(String city, String forecast) throws CommandNotFoundException {
+    public void getWeather(String city, String forecast, boolean repeat) throws CommandNotFoundException {
         try {
             String uri = "";
-            weatherRequestService
+            weatherResponseService
                     .getWeatherUriBuilder()
                     .city(city);
             switch (forecast) {
                 case "na dzisiaj":
-                    uri = weatherRequestService
+                    uri = weatherResponseService
                             .getWeatherUriBuilder()
                             .mode(ForecastMode.CURRENTLY)
                             .build();
                     break;
                 case "na jutro":
-                    uri = weatherRequestService
+                    uri = weatherResponseService
                             .getWeatherUriBuilder()
                             .mode(ForecastMode.FUTURE)
                             .amountFutureDays(1)
                             .build();
                     break;
                 case "na pojutrze":
-                    uri = weatherRequestService
+                    uri = weatherResponseService
                             .getWeatherUriBuilder()
                             .mode(ForecastMode.FUTURE)
                             .amountFutureDays(2)
@@ -75,12 +77,13 @@ public class WeatherService {
                 default:
                     throw new CommandNotFoundException();
             }
-            weatherRequestService.setURI(uri);
-            JSONObject jsonObject = weatherRequestService.getWeather();
+            weatherResponseService.setURI(uri);
+            JSONObject jsonObject = weatherResponseService.getWeather();
             Double degrees = ((JSONObject) jsonObject.get("main")).getDouble("temp");
             String status = additionalInformation((JSONArray) jsonObject.get("weather"));
             String result = String.format("%.2f", degrees - 273.15) + "stopni oraz " + status + ". Życzę miłego dnia.";
-            player.speak(result);
+            Player.getInstance().speak(result);
+            if(repeat)
             GLaDOSService.repeatPhrase(result);
         } catch (CannotBuildException | IOException | CannotGetWeatherException | ParseException e) {
             e.printStackTrace();

@@ -1,13 +1,13 @@
 package GLaDOSService;
 
 import GLaDOSService.DateTime.DateTimeService;
+import GLaDOSService.DateTime.DateTimeType;
 import GLaDOSService.Translate.TranslateVoice;
 import GLaDOSService.Weather.WeatherService;
+import GLaDOSService.Welcome.WelcomeService;
 import Player.Player;
 
 public class HandleCommands {
-
-    private Player player;
 
     private TranslateVoice translateVoice;
 
@@ -15,34 +15,42 @@ public class HandleCommands {
 
     private DateTimeService dateTimeService;
 
+    private WelcomeService welcomeService;
+
     public HandleCommands() {
-        player = new Player();
         translateVoice = new TranslateVoice();
         weatherService = new WeatherService();
         dateTimeService = new DateTimeService();
+        welcomeService = new WelcomeService();
     }
 
     void handleCommand(String command){
         switch (command.toLowerCase()){
-            case "kocham cię": player.speak("Tak? Miło mi");
+            case "kocham cię": Player.getInstance().speak("Tak? Miło mi");
             break;
-            case "kim zostanę w przyszłości": player.speak("Mam dla Ciebie przykrą wiadomość. Zostaniesz nikim kochanie.");
+            case "kim zostanę w przyszłości": Player.getInstance().speak("Mam dla Ciebie przykrą wiadomość. Zostaniesz nikim kochanie.");
             break;
-            case"tłumacz": player.speak("Jaką frazę mam dla Ciebie przetłumaczyć?");
+            case"tłumacz":
             translateVoice.translate();
                 break;
-            case "podaj pogodę": player.speak("Z jakiego miasta chcesz usłyszeć pogodę?");
+            case "podaj pogodę":
                 weatherService.sayWeather();
                 break;
-            case "kim jest kuba": player.speak("Kuba jest dla mnie śmieciem. Jestem najlepsza. Żaden człowiek mi nie podskoczy. Kuba to zwykły programista java , a ja jestem wielki GLADOS hehe.");
+            case "kim jest kuba": Player.getInstance().speak("Kuba jest dla mnie śmieciem. Jestem najlepsza. Żaden człowiek mi nie podskoczy. Kuba to zwykły programista java , a ja jestem wielki GLADOS hehe.");
             break;
             case "podaj godzinę":
-                dateTimeService.checkTime();
+                dateTimeService.checkDateTime(DateTimeType.TIME,true);
             break;
             case "podaj datę":
-                dateTimeService.checkDate();
+                dateTimeService.checkDateTime(DateTimeType.DATE,true);
                 break;
-            default: player.speak("Nie znam tej komendy.");
+            case "dzień dobry":
+                welcomeService.speakWelcomeMessage();
+                break;
+            case "dobranoc":
+                welcomeService.speakGoodbyeMessage();
+                break;
+            default: Player.getInstance().speak("Nie znam tej komendy.");
             break;
         }
     }
