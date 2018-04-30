@@ -2,6 +2,7 @@ package GLaDOSService;
 
 import DateTime.DateTimeService;
 import DateTime.DateTimeType;
+import GLaDOSService.Destination.DestinationService;
 import GLaDOSService.Translate.TranslateVoice;
 import GLaDOSService.Weather.WeatherService;
 import GLaDOSService.Welcome.WelcomeService;
@@ -17,16 +18,19 @@ public class HandleCommands {
 
     private WelcomeService welcomeService;
 
+    private DestinationService destinationService;
+
     public HandleCommands() {
         translateVoice = new TranslateVoice();
         weatherService = new WeatherService();
         dateTimeService = new DateTimeService();
         welcomeService = new WelcomeService();
+        destinationService = new DestinationService();
     }
 
     void handleCommand(String command){
         switch (command.toLowerCase()){
-            case "kocham cię": Player.getInstance().speak("Tak? Miło mi");
+            case "kocham cię": Player.getInstance().speak("Kocham tylko Karola.");
             break;
             case "kim zostanę w przyszłości": Player.getInstance().speak("Mam dla Ciebie przykrą wiadomość. Zostaniesz nikim kochanie.");
             break;
@@ -53,6 +57,9 @@ public class HandleCommands {
                 break;
             case "dobranoc":
                 welcomeService.speakGoodbyeMessage();
+                break;
+            case "odległość":
+                destinationService.getDestinationInf();
                 break;
             case "zakończ":
                 Player.getInstance().speak("Papa");

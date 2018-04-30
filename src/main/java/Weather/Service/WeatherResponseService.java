@@ -48,7 +48,7 @@ public class WeatherResponseService {
     public Weather getWeather() throws IOException, CannotGetWeatherException, ParseException {
         JSONObject result = null;
         try {
-            result = requestService.getJSONfromURL(getURI());
+            result = requestService.getJSONfromURL(getURI(),false);
         } catch (CannotGetResponseException e) {
             throw new CannotGetWeatherException();
         }

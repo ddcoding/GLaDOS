@@ -18,7 +18,7 @@ public class GeoIPService implements GeoIPInt{
     @Override
     public JSONObject getMyLocalization() throws CannotGetLocalizationException {
         try {
-            return requestService.getJSONfromURL(GeoIPService.URL);
+            return requestService.getJSONfromURL(GeoIPService.URL,false);
         } catch (IOException | CannotGetResponseException e) {
             e.printStackTrace();
             throw new CannotGetLocalizationException();
@@ -27,7 +27,7 @@ public class GeoIPService implements GeoIPInt{
     @Override
     public JSONObject getLocalizationFromIP(String ip) throws CannotGetLocalizationException {
         try {
-            return requestService.getJSONfromURL(GeoIPService.URL + "/" + ip);
+            return requestService.getJSONfromURL(GeoIPService.URL + "/" + ip,false);
         } catch (IOException | CannotGetResponseException e) {
             e.printStackTrace();
             throw new CannotGetLocalizationException();

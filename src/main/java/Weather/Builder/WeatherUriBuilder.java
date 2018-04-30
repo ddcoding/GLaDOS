@@ -1,6 +1,7 @@
 package Weather.Builder;
 
 
+import Exceptions.CannotBuildException;
 import Weather.ForecastMode;
 
 /**

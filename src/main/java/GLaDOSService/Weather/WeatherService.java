@@ -5,19 +5,14 @@ import GLaDOSService.GLaDOSService;
 import GeoIP.GeoIPInt;
 import GeoIP.GeoIPService;
 import Player.Player;
-import SoundRecord.RecordService;
-import Translate.GoogleTranslate;
-import Weather.Builder.CannotBuildException;
+import Exceptions.CannotBuildException;
 import Weather.ForecastMode;
 import Weather.Service.CannotGetWeatherException;
 import Weather.Service.WeatherResponseService;
 import Weather.WeatherIt;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Iterator;
 
 public class WeatherService {
 

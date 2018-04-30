@@ -12,8 +12,9 @@ import java.net.URL;
 public class RequestService {
     private final static String USER_AGENT = "Mozilla/5.0";
 
-    public JSONObject getJSONfromURL(String URI) throws IOException, CannotGetResponseException {
-        URL obj = new URL("http://" + URI);
+    public JSONObject getJSONfromURL(String URI, boolean secured) throws IOException, CannotGetResponseException {
+        String prefix = secured ? "https://" : "http://";
+        URL obj = new URL(prefix + URI);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         // optional default is GET
